@@ -28,13 +28,11 @@ class App extends React.Component {
         <Modal.Body className = "show-grid">
           <Container>
             <Row>
-              <Col>
+              <Col xs={12} md={8}>
                 <b>The package you chose</b>
               </Col>
-              <col>
-              arrow
-              </col>
-              <Col>
+
+              <Col xs={6} md={4}>
                 <b>Select a deal</b>
               </Col>
             </Row>
