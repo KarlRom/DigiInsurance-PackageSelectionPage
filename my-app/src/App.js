@@ -2,7 +2,8 @@ import React from 'react';
 import { Card, Container, Row, Col, Button , ButtonToolbar, Modal } from 'react-bootstrap';
 import { ArrowRight } from 'react-bootstrap-icons';
 
-import {PackageDealSelectionModal} from './components/PackageDealSelectionModal.js'
+import {PackageDealSelectionModal} from './components/PackageDealSelectionModal.js';
+import {PackageCard} from './components/PackageCard.js';
 
 
 class App extends React.Component {
@@ -23,14 +24,30 @@ class App extends React.Component {
     });
   }
   render() {
+
     return (
-    <div>
+    <div className="p-3">
       {/*<h1> Bootstrap Modal in React</h1>*/}
-      <ButtonToolbar>
       <Button onClick={()=>{this.setState({Modalshow: true})}}>Package Selection</Button>
-      
+
       <PackageDealSelectionModal show ={this.state.Modalshow} onHide = {()=>{this.setState({Modalshow: false})}}/>
-      </ButtonToolbar>
+
+      <Container fluid>
+        <Row xs={2} md={4} lg={6}>
+          <Col className = "m-1" >
+            <PackageCard />
+          </Col>
+          <Col className = "m-1" >
+            <PackageCard />
+          </Col>
+          <Col className = "m-1" >
+            <PackageCard />
+          </Col>   
+          <Col className = "m-1" >
+            <PackageCard />
+          </Col>                      
+        </Row>
+      </Container>
 
       <Modal size = "m" className = "p-3" show ={this.state.Modalshow2} flex>
         <Modal.Body className = "mx-3 p-3">
