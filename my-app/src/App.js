@@ -1,61 +1,70 @@
 import React from 'react';
-import {Container, Row, Col, Button , Modal } from 'react-bootstrap';
+import { Card, Container, Row, Col, Button , ButtonToolbar, Modal } from 'react-bootstrap';
+import { ArrowRight } from 'react-bootstrap-icons';
+
+import {PackageDealSelectionModal} from './components/PackageDealSelectionModal.js'
+
+
 class App extends React.Component {
   constructor(){
     super()
     this.state={
-      showModal1:false,
-      showModal2:false
-    }
+        Modalshow: false,
+        Modalshow2:false
+      };
+
   }
 
-  handleClose(id) 
-  {
-    this.setState({showModal1: false});
+
+
+  Modalclose(){
+    this.setState({
+      Modalshow:false
+    });
   }
-  handleModal(id)
-  {
-    this.setState({showModal1: true})
-  }
- 
   render() {
     return (
     <div>
       {/*<h1> Bootstrap Modal in React</h1>*/}
-      <Button onClick={()=>{this.handleModal()}}>Package Selection</Button>
-      <Modal show ={this.state.showModal1} >
-        <Modal.Header >Package Selection</Modal.Header>
-        <Modal.Body className = "show-grid">
-          <Container>
-            <Row>
-              <Col xs={12} md={8}>
-                <b>The package you chose</b>
-              </Col>
+      <ButtonToolbar>
+      <Button onClick={()=>{this.setState({Modalshow: true})}}>Package Selection</Button>
+      
+      <PackageDealSelectionModal show ={this.state.Modalshow} onHide = {()=>{this.setState({Modalshow: false})}}/>
+      </ButtonToolbar>
 
-              <Col xs={6} md={4}>
-                <b>Select a deal</b>
+      <Modal size = "m" className = "p-3" show ={this.state.Modalshow2} flex>
+        <Modal.Body className = "mx-3 p-3">
+          <Row >
+            <h3><b>YOUR BENEFITS</b></h3>
+            Quick summary at the benefits you can get from this package
+          </Row>
+          <Row className = "mt-3">
+              <b>SUMMARY OF BENEFITS</b>
+          </Row>
+          <Row className = "my-3" style={{contentAlign: "Center", justifyContent: "space-between"}}>
+            <Row className = "m-0" style={{ width: "100%" }}>
+              <Col xs = {6} style={{contentAlign: "Left"}}>
+                <Row>
+                  <b>POLICY DETAILS</b>
+                </Row>
+                <Row>
+                  Base sum assured
+                </Row>
+              </Col>
+              <Col xs = {6}  style={{contentAlign: "Right"}}>
+                <Row>
+                  <b>AMOUNT IN PHP</b>
+                </Row>
+                <Row>
+                  1,500,000.00
+                </Row>    
               </Col>
             </Row>
-          </Container>
+          </Row>
         </Modal.Body>
-        <Modal.Footer>
-          <Button class = "text-left" onClick={()=>{this.handleClose()}}>
-            Change Package
-          </Button>
-          <Button  onClick={() => this.setState({ showModal2:true, showModal1:false})}>
-            Proceed
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal show ={this.state.showModal2} >
-        <Modal.Header >Summary of Deals</Modal.Header>
-        <Modal.Body>
-          SOD
-        </Modal.Body>
-        <Modal.Footer>
-          <Button  onClick={()=>this.setState({ showModal2:false, showModal1:false})}>
-            Close Modal
+        <Modal.Footer className = "my-auto" style={{textAlign: "center", contentAlign: "center", padding: "Auto"}}  >
+          <Button  className = "my-auto" style={{textAlign: "center", contentAlign: "center", padding: "Auto"}}  onClick={()=>this.setState({ showModal2:false, showModal1:false})}>
+            PROCEED
           </Button>
         </Modal.Footer>
       </Modal>      

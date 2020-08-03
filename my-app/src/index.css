@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.PackageModal {
+  min-width: 1000px;
+  background-color: gray;
+}
+
+.Column1 {
+  text-align: center;
+}
+
+.Column2 {
+  text-align: center;
+}
