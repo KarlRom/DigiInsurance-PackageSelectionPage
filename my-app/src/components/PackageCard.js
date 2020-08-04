@@ -14,7 +14,7 @@ export const PackageCard = ({ type, basesum, annual }) => {
 
     useState([]);
     const [show, setShow] = useState(false);
-    
+
     const handleShow = status => {
         setShow(status);
     }
