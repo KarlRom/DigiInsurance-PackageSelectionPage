@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PackageCard from './PackageCard'
+import { CardDeck, Row } from 'react-bootstrap';
 
 export class PackageSelection extends Component {
     
@@ -31,10 +32,10 @@ export class PackageSelection extends Component {
 
       render(){
             return(
-                <div className="flex-wrap">
-
+                <div className="flex-wrap" >
+                  <Row>
                  { this.state.packages.map(item => <PackageCard key = {item.type} type ={item.type} basesum = {item.basesum} annual = {item.annual} />  ) }
-                    
+                  </Row>  
             
                 </div>
             )   
