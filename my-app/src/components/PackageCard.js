@@ -41,7 +41,7 @@ export const PackageCard = ({ type, basesum, annual }) => {
                 <Holder2 />
             </Card.Body>
 
-            <Card.Body className="pt-2 pb-0">
+            <Card.Body className="pt-2">
                 <span className="row">
                     <span className="col">
                         <span className=" row insurance">Base sum assured</span>
