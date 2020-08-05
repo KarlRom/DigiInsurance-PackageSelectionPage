@@ -41,7 +41,7 @@ export const PackageCard = ({ type, basesum, annual }) => {
                 <Holder2 />
             </Card.Body>
 
-            <Card.Body className="pt-2">
+            <Card.Body className="pt-2 pb-0">
                 <span className="row">
                     <span className="col">
                         <span className=" row insurance">Base sum assured</span>
@@ -61,14 +61,13 @@ export const PackageCard = ({ type, basesum, annual }) => {
                 </span>
 
                 <span className="row d-flex justify-content-center pt-3">
-                    <Button onClick={handleShow} variant="info" size="sm" style={{ backgroundColor: "#005dbe", borderRadius: 50, fontSize: 11 }}>I CHOOSE THIS PACKAGE</Button>
+                    <Button onClick={()=>{handleShow(true)}} variant="info" size="md" style={{ backgroundColor: "#005dbe", borderRadius: 50, fontSize: 11 }}><b>I CHOOSE THIS PACKAGE</b></Button>
                     <PDSModal show={show}
                         type={type}
                         basesum={basesum}
                         annual={annual}
-                        show={show}
-                        handleShow={handleShow} />
-                    {/*eto sana pang call ng modal kaso di ko mapagana */}
+                        handleShow={handleShow}
+                         />
                 </span>
             </Card.Body>
         </Card>
