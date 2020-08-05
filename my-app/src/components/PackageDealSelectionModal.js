@@ -1,32 +1,54 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Card, Container, Row, Col, Button, Modal } from 'react-bootstrap';
-import { ArrowRight } from 'react-bootstrap-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { PackageCard } from './PackageCard.js';
 import { faHeart, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import Holder2 from './Holder2'
 
-export const PDSModal = ({ type, basesum, annual, show, handleShow/*, AnnualP, SAnnualP, QuarterP*/ }) => {
+import { SODModal } from './SummaryOfDealsModal.js';
+
+
+export const PDSModal = ({ type, basesum, annual, show, handleShow/*, SAnnualP, QuarterP*/ }) => {
   const style = {
     width: 297,
   }
 
+  const deals = {
+    fontSize: 15,
+    textDecoration: 'underline',
+  }
+
+  const dealsPrice = {
+    fontSize: 15,
+  }
+
+  const dealsDesc = {
+    fontSize: 13,
+  }
+
+
+  useState([]);
+  const [show2, setShow] = useState(false);
+
+  const handleShow2 = status => {
+    setShow(status);
+  }
 
   return (
 
-    <Modal 
+    <Modal
       size="lg"
       style={{ textAlign: "center", justifyContent: "center" }}
       backdrop="static"
       keyboard={false}
-      open={ show }
-      onClose={ () => { handleShow(false) } }>
+      show={show}
+      onHide={() => { handleShow(false) }}
+      flex fluid>
 
       <Modal.Body className="show-grid">
         <Container >
           <Row >
-            <Col className="m-1" style={{ contentAlign: "center" }}>
+            <Col className="m-1  mt-2" style={{ contentAlign: "center" }}>
               <b>The package you chose</b>
 
               <Card border="light" className="flex-wrap justify-content-center m-2" style={style}>
@@ -78,44 +100,41 @@ export const PDSModal = ({ type, basesum, annual, show, handleShow/*, AnnualP, S
 
             </Col>
 
-            <Col className="m-1" style={{ textAlign: "center" }} >
+            <Col className="mx-3 mt-2" style={{ textAlign: "center" }} >
               <b>Select a deal</b>
               <Row>
-                <Card className="p-2 mt-3" style={{ textAlign: "left", width: "100%" }}>
-                  <Card.Body>
-                    <Card.Title><b>Annually</b></Card.Title>
-                    <Card.Text>
-                      <b>Php {/*{ AnnualP }*/}</b>
+                <Card className="p-1 mt-3" style={{ textAlign: "left", width: "100%" }}>
+                  <Card.Body className="p-2">
+                    <Card.Title style={deals}> <b>Annually</b></Card.Title>
+                    <Card.Text style={dealsPrice}>
+                      <b>Php {annual}</b>
                     </Card.Text>
-                    <Card.Text>
-                      Save on the first year for this option
+                    <Card.Text style={dealsDesc}>
+                      Save Php 1,236.41 on the first year for this option
                       </Card.Text>
                   </Card.Body>
                 </Card>
               </Row>
               <Row>
-                <Card className="p-2 mt-3" style={{ textAlign: "left", width: "100%" }}>
-                  <Card.Body>
-                    <Card.Title><b>Semi-Annually</b></Card.Title>
-                    <Card.Text>
-                      <b>Php {/*{ SAnnualP }*/}</b>
+                <Card className="p-1 mt-3" style={{ textAlign: "left", width: "100%" }}>
+                  <Card.Body className="p-2">
+                    <Card.Title style={deals}><b>Semi-Annually</b></Card.Title>
+                    <Card.Text style={dealsPrice}>
+                      <b>Php 4,636.52{/*{ SAnnualP }*/}</b>
                     </Card.Text>
-                    <Card.Text>
-                      Save on the first year for this option
+                    <Card.Text style={dealsDesc}>
+                      Save Php 784.52 on the first year for this option
                       </Card.Text>
                   </Card.Body>
                 </Card>
               </Row>
               <Row>
-                <Card className="p-2 mt-3" style={{ textAlign: "left", width: "100%" }}>
-                  <Card.Body>
-                    <Card.Title><b>Quarterly</b></Card.Title>
-                    <Card.Text>
-                      <b>Php {/*{ QuarterP }*/}</b>
+                <Card className="p-1 mt-3" style={{ textAlign: "left", width: "100%" }}>
+                  <Card.Body className="p-2">
+                    <Card.Title style={deals}><b>Quarterly</b></Card.Title>
+                    <Card.Text style={dealsPrice}>
+                      <b>Php 2,516.97 {/*{ QuarterP }*/}</b>
                     </Card.Text>
-                    <Card.Text>
-                      Save on the first year for this option
-                      </Card.Text>
                   </Card.Body>
                 </Card>
               </Row>
@@ -123,13 +142,19 @@ export const PDSModal = ({ type, basesum, annual, show, handleShow/*, AnnualP, S
           </Row>
         </Container>
       </Modal.Body>
-      <Modal.Footer style={{ justifyContent: "space-between" }}>
-        <Button variant="light" class="text-left" onClick ={ () => { handleShow(false) }} >
-          Change Package
-          </Button>
-        <Button >
-          Proceed
-          </Button>
+      <Modal.Footer className="mx-3" style={{ justifyContent: "space-between", borderTopWidth: 0 }}>
+        <Button variant="light" class="text-left" onClick={() => { handleShow(false) }} size="md" style={{ backgroundColor: "white", borderRadius: 50, fontSize: 15, color: "grey" }}>
+          <b>CHANGE PACKAGE</b>
+        </Button>
+        <Button onClick={() => { handleShow2(true) }} variant="info" size="md" style={{ backgroundColor: "#005dbe", borderRadius: 50, fontSize: 15 }} >
+          <b>PROCEED</b>
+        </Button>
+        <SODModal show={show}
+          show2={show2}
+          type={type}
+          basesum={basesum}
+          annual={annual}
+          handleShow={handleShow2} />
       </Modal.Footer>
     </Modal>
 
